@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://byjsg8x8xn8c0"]
+
+[ext_resource type="PackedScene" uid="uid://c4kg36kykoy2y" path="res://player.tscn" id="1_3qdm4"]
+[ext_resource type="PackedScene" uid="uid://l08fqm7wk4b1" path="res://background.tscn" id="1_tdtiy"]
+[ext_resource type="PackedScene" uid="uid://c141slhk0tq7j" path="res://projectile.tscn" id="3_e6mqb"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource("1_tdtiy")]
+position = Vector2(0, 10)
+
+[node name="Player" parent="." instance=ExtResource("1_3qdm4")]
+position = Vector2(95, 162)
+
+[node name="Projectile" parent="." instance=ExtResource("3_e6mqb")]
