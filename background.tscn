@@ -1,14 +1,22 @@
 [gd_scene load_steps=3 format=3 uid="uid://l08fqm7wk4b1"]
 
-[ext_resource type="Texture2D" uid="uid://bj3s0pji08387" path="res://Assets/Spooky Shmup/Skybox Castle outside.png" id="1_ijpxq"]
-[ext_resource type="Script" path="res://background.gd" id="1_mqd7j"]
+[ext_resource type="Texture2D" uid="uid://cer8dmnwk626k" path="res://Assets/Spooky Shmup/Skybox Castle outside.png" id="1_ijpxq"]
+[ext_resource type="Script" path="res://parallax_background.gd" id="2_m3lt8"]
 
 [node name="Background" type="Node2D"]
-script = ExtResource("1_mqd7j")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 974.0
-offset_bottom = 240.0
-scale = Vector2(1.35, 1.35)
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("2_m3lt8")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(430, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(217, 325)
+scale = Vector2(2.7, 2.7)
 texture = ExtResource("1_ijpxq")
-stretch_mode = 1
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(1077, 325)
+scale = Vector2(2.7, 2.7)
+texture = ExtResource("1_ijpxq")

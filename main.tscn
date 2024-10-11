@@ -1,15 +1,78 @@
-[gd_scene load_steps=4 format=3 uid="uid://byjsg8x8xn8c0"]
+[gd_scene load_steps=8 format=3 uid="uid://byjsg8x8xn8c0"]
 
 [ext_resource type="PackedScene" uid="uid://c4kg36kykoy2y" path="res://player.tscn" id="1_3qdm4"]
+[ext_resource type="Script" path="res://main.gd" id="1_gjhpx"]
 [ext_resource type="PackedScene" uid="uid://l08fqm7wk4b1" path="res://background.tscn" id="1_tdtiy"]
-[ext_resource type="PackedScene" uid="uid://c141slhk0tq7j" path="res://projectile.tscn" id="3_e6mqb"]
+[ext_resource type="PackedScene" uid="uid://iwf5457qgdi4" path="res://enemy.tscn" id="3_wpv5h"]
+[ext_resource type="Script" path="res://spwan_timer.gd" id="5_hqthk"]
+[ext_resource type="Script" path="res://player_hp.gd" id="6_j7f7s"]
+[ext_resource type="Script" path="res://player_score.gd" id="7_rvpro"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_gjhpx")
 
 [node name="Background" parent="." instance=ExtResource("1_tdtiy")]
-position = Vector2(0, 10)
+z_index = -1
+position = Vector2(-1, -1)
+scale = Vector2(1.919, 2.032)
 
 [node name="Player" parent="." instance=ExtResource("1_3qdm4")]
-position = Vector2(95, 162)
+position = Vector2(128, 340)
 
-[node name="Projectile" parent="." instance=ExtResource("3_e6mqb")]
+[node name="Enemy" parent="." instance=ExtResource("3_wpv5h")]
+position = Vector2(1197, 270)
+
+[node name="spwanTimer" type="Timer" parent="."]
+autostart = true
+script = ExtResource("5_hqthk")
+
+[node name="UI" type="Node2D" parent="."]
+
+[node name="Control" type="Control" parent="UI"]
+z_index = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.8227, 16.3266)
+
+[node name="PlayerHP" type="Label" parent="UI/Control"]
+layout_mode = 0
+offset_left = 5.65527
+offset_top = 0.673748
+offset_right = 45.6553
+offset_bottom = 23.6737
+scale = Vector2(0.178486, 0.180774)
+text = "3
+"
+script = ExtResource("6_j7f7s")
+
+[node name="PlayerScore" type="Label" parent="UI/Control"]
+layout_mode = 0
+offset_left = 33.7581
+offset_top = 0.734998
+offset_right = 73.7581
+offset_bottom = 23.735
+scale = Vector2(0.178486, 0.180774)
+text = "0"
+script = ExtResource("7_rvpro")
+
+[node name="HP" type="Label" parent="UI/Control"]
+layout_mode = 0
+offset_left = 0.867372
+offset_top = 0.673748
+offset_right = 40.8674
+offset_bottom = 23.6737
+scale = Vector2(0.178486, 0.180774)
+text = "Hp:"
+
+[node name="Score" type="Label" parent="UI/Control"]
+layout_mode = 0
+offset_left = 25.3967
+offset_top = 0.857498
+offset_right = 73.3967
+offset_bottom = 23.8575
+scale = Vector2(0.178486, 0.180774)
+text = "Score:"
+
+[connection signal="timeout" from="spwanTimer" to="." method="_on_spwan_timer_timeout"]

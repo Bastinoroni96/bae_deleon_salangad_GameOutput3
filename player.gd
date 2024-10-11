@@ -2,7 +2,8 @@ extends CharacterBody2D
 
 var Bullet = preload("res://projectile.tscn")
 
-@export var speed = 200
+var health = 3 
+@export var speed = 300
 @export var canshoot = true
 
 @onready var spawnpos = $Spawnpos
@@ -19,8 +20,8 @@ func _process(delta: float) -> void:
 	else:
 		velocity = Vector2.ZERO
 	move_and_slide()
-	
-	global_position.x = clamp(global_position.x, 30, 300)
+
+	global_position.x = clamp(global_position.x, 30, 440)
 	global_position.y = clamp(global_position.y, 40, 565)
 	
 	if Input.is_action_pressed("shoot") and canshoot:
@@ -45,3 +46,12 @@ func shoot():
 	
 	muzzleflash2.play("muzzleflash2")
 	$Shootspeed.start()
+	
+func player_hit():
+	health -=1
+	Global.health -=1
+	if health == 0:
+		get_tree().reload_current_scene()
+		Global.score = 0
+		Global.health =3
+		queue_free()

@@ -1,11 +1,38 @@
 [gd_scene load_steps=11 format=3 uid="uid://c4kg36kykoy2y"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_pgnco"]
-[ext_resource type="Texture2D" uid="uid://bvl2g1v8snj2i" path="res://Assets/kenney_pixel-shmup/Ships/ship_0009.png" id="2_g6qqq"]
-[ext_resource type="Texture2D" uid="uid://0j25yutdtfuk" path="res://Assets/kenney_pixel-shmup/Tilemap/tiles.png" id="3_th377"]
+[ext_resource type="Texture2D" uid="uid://bpfb2g3ioqatq" path="res://Assets/kenney_pixel-shmup/Ships/ship_0009.png" id="2_g6qqq"]
+[ext_resource type="Texture2D" uid="uid://i3pgsrvpvd5a" path="res://Assets/kenney_pixel-shmup/Tilemap/tiles.png" id="3_th377"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1jr3k"]
 size = Vector2(54, 71)
+
+[sub_resource type="Animation" id="Animation_tqtix"]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5.13333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_cnl8v"]
 resource_name = "muzzleflash"
@@ -35,37 +62,37 @@ tracks/1/keys = {
 "values": [0.0, 0.349066]
 }
 
-[sub_resource type="Animation" id="Animation_tqtix"]
-length = 0.001
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ka2rl"]
+_data = {
+"RESET": SubResource("Animation_tqtix"),
+"muzzleflash": SubResource("Animation_cnl8v")
+}
+
+[sub_resource type="Animation" id="Animation_cem62"]
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D2:visible")
+tracks/0/path = NodePath(".:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 4.13333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [false, false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D2:rotation")
+tracks/1/path = NodePath(".:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ka2rl"]
-_data = {
-"RESET": SubResource("Animation_tqtix"),
-"muzzleflash": SubResource("Animation_cnl8v")
+"values": [0.16212]
 }
 
 [sub_resource type="Animation" id="Animation_2rbbt"]
@@ -96,40 +123,13 @@ tracks/1/keys = {
 "values": [0.16212, 0.349066]
 }
 
-[sub_resource type="Animation" id="Animation_cem62"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.16212]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_skkaf"]
 _data = {
 "RESET": SubResource("Animation_cem62"),
 "muzzleflash2": SubResource("Animation_2rbbt")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_pgnco")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -153,6 +153,7 @@ wait_time = 0.5
 one_shot = true
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 position = Vector2(20, -25)
 texture = ExtResource("3_th377")
@@ -165,6 +166,7 @@ libraries = {
 }
 
 [node name="Sprite2D3" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 position = Vector2(21, 25)
 rotation = 0.16212
