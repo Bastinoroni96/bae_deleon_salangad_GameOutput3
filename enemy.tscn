@@ -1,10 +1,72 @@
-[gd_scene load_steps=5 format=3 uid="uid://iwf5457qgdi4"]
+[gd_scene load_steps=9 format=3 uid="uid://iwf5457qgdi4"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_n3duu"]
-[ext_resource type="Texture2D" uid="uid://cc1x4x83aokrw" path="res://Assets/kenney_pixel-shmup/Ships/ship_0012.png" id="2_5r13l"]
+[ext_resource type="Texture2D" uid="uid://tfajoblbn4eu" path="res://Assets/kenney_pixel-shmup/Ships/ship_0012.png" id="2_5r13l"]
+[ext_resource type="Texture2D" uid="uid://0j25yutdtfuk" path="res://Assets/kenney_pixel-shmup/Tilemap/tiles.png" id="3_dt66i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hdloh"]
 size = Vector2(77, 108)
+
+[sub_resource type="Animation" id="Animation_2w7j0"]
+resource_name = "Muzzleflash"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.349066]
+}
+
+[sub_resource type="Animation" id="Animation_bs6vi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oei1p"]
+_data = {
+"Muzzleflash": SubResource("Animation_2w7j0"),
+"RESET": SubResource("Animation_bs6vi")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vgstm"]
 
@@ -20,17 +82,28 @@ texture = ExtResource("2_5r13l")
 position = Vector2(-0.5, -1)
 shape = SubResource("RectangleShape2D_hdloh")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="SpawnPos" type="Marker2D" parent="."]
+position = Vector2(-34, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-scale = Vector2(60.9831, 51.5448)
-shape = SubResource("CircleShape2D_vgstm")
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-43, 0)
+texture = ExtResource("3_dt66i")
+region_enabled = true
+region_rect = Rect2(85, 0, 16, 16)
+
+[node name="Muzzleflash" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_oei1p")
+}
 
 [node name="ShootSpeed" type="Timer" parent="."]
 autostart = true
 
-[node name="SpawnPos" type="Marker2D" parent="."]
-position = Vector2(-34, 0)
+[node name="Detection" type="Area2D" parent="."]
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
+scale = Vector2(60.9831, 51.5448)
+shape = SubResource("CircleShape2D_vgstm")
+
 [connection signal="timeout" from="ShootSpeed" to="." method="_on_shoot_speed_timeout"]
+[connection signal="body_entered" from="Detection" to="." method="_on_area_2d_body_entered"]

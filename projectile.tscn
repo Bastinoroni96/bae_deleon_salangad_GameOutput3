@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c141slhk0tq7j"]
 
 [ext_resource type="Script" path="res://projectile.gd" id="1_i0ibi"]
-[ext_resource type="Texture2D" uid="uid://i3pgsrvpvd5a" path="res://Assets/kenney_pixel-shmup/Tilemap/tiles.png" id="1_xrjjy"]
+[ext_resource type="Texture2D" uid="uid://0j25yutdtfuk" path="res://Assets/kenney_pixel-shmup/Tilemap/tiles.png" id="1_xrjjy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x5hmd"]
 size = Vector2(24, 9)

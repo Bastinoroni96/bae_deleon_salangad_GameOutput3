@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cuhfre4cb3sry"]
 
-[ext_resource type="Texture2D" uid="uid://cgkr0c0k2k4bv" path="res://Assets/kenney_pixel-shmup/Tiles/tile_0002.png" id="1_01chj"]
+[ext_resource type="Texture2D" uid="uid://cbbdrtbwvr2r6" path="res://Assets/kenney_pixel-shmup/Tiles/tile_0002.png" id="1_01chj"]
 [ext_resource type="Script" path="res://enemy_bullet.gd" id="1_cw217"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7yf16"]

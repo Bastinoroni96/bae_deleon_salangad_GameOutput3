@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://l08fqm7wk4b1"]
 
-[ext_resource type="Texture2D" uid="uid://cer8dmnwk626k" path="res://Assets/Spooky Shmup/Skybox Castle outside.png" id="1_ijpxq"]
+[ext_resource type="Texture2D" uid="uid://bj3s0pji08387" path="res://Assets/Spooky Shmup/Skybox Castle outside.png" id="1_ijpxq"]
 [ext_resource type="Script" path="res://parallax_background.gd" id="2_m3lt8"]
 
 [node name="Background" type="Node2D"]
