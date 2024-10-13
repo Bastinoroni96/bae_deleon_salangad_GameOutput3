@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://byjsg8x8xn8c0"]
+[gd_scene load_steps=9 format=3 uid="uid://byjsg8x8xn8c0"]
 
 [ext_resource type="PackedScene" uid="uid://c4kg36kykoy2y" path="res://player.tscn" id="1_3qdm4"]
 [ext_resource type="Script" path="res://main.gd" id="1_gjhpx"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://spwan_timer.gd" id="5_hqthk"]
 [ext_resource type="Script" path="res://player_hp.gd" id="6_j7f7s"]
 [ext_resource type="Script" path="res://player_score.gd" id="7_rvpro"]
+[ext_resource type="Script" path="res://camera.gd" id="8_ambus"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_gjhpx")
@@ -75,4 +76,12 @@ offset_bottom = 23.8575
 scale = Vector2(0.178486, 0.180774)
 text = "Score:"
 
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(577, 325)
+script = ExtResource("8_ambus")
+
+[node name="Shaketime" type="Timer" parent="Camera"]
+autostart = true
+
 [connection signal="timeout" from="spwanTimer" to="." method="_on_spwan_timer_timeout"]
+[connection signal="timeout" from="Camera/Shaketime" to="Camera" method="_on_shaketime_timeout"]

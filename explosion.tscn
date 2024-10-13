@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctuxea8rrpxhv"]
+
+[ext_resource type="Texture2D" uid="uid://byjwv6yq15rsb" path="res://Assets/kenney_pixel-shmup/Tiles/tile_0006.png" id="1_ucyyq"]
+[ext_resource type="Script" path="res://explosion.gd" id="2_abbx0"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xsdye"]
+
+[sub_resource type="Curve" id="Curve_i0cqc"]
+_data = [Vector2(0, 0.808551), 0.0, 0.0, 0, 0, Vector2(0.863128, 0.209501), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Explosion" type="CPUParticles2D"]
+material = SubResource("CanvasItemMaterial_xsdye")
+emitting = false
+amount = 500
+one_shot = true
+speed_scale = 3.0
+explosiveness = 0.8
+local_coords = true
+texture = ExtResource("1_ucyyq")
+emission_shape = 1
+emission_sphere_radius = 0.1
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+scale_amount_min = 0.5
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_i0cqc")
+script = ExtResource("2_abbx0")
